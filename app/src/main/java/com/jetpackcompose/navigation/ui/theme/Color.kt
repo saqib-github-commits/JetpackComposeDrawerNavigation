@@ -1,4 +1,4 @@
-package com.jetpackcompose.navigaiton.ui.theme
+package com.jetpackcompose.navigation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

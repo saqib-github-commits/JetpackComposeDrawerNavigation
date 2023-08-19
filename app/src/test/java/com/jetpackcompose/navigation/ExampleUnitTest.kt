@@ -1,4 +1,4 @@
-package com.jetpackcompose.navigaiton
+package com.jetpackcompose.navigation
 
 import org.junit.Test
 
