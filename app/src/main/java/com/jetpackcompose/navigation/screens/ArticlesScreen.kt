@@ -15,7 +15,10 @@ import com.jetpackcompose.navigation.CustomAppBar
 @Composable
 fun ArticlesScreen(drawerState: DrawerState) {
     Scaffold(
-        topBar = { CustomAppBar(drawerState = drawerState, title = "Articles") }
+        topBar = { CustomAppBar(
+            drawerState = drawerState,
+            title = "Articles"
+        ) }
     ) { paddingValues ->
         Column(
             modifier = Modifier.fillMaxSize().padding(paddingValues),

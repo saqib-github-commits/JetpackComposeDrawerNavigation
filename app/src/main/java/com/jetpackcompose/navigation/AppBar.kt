@@ -1,6 +1,5 @@
 package com.jetpackcompose.navigation
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -19,8 +18,8 @@ import kotlinx.coroutines.launch
 @Composable
 fun CustomAppBar(drawerState: DrawerState?, title: String) {
     val coroutineScope = rememberCoroutineScope()
-    CenterAlignedTopAppBar(
 
+    CenterAlignedTopAppBar(
         navigationIcon = {
             if (drawerState != null) {
                 IconButton(onClick = {

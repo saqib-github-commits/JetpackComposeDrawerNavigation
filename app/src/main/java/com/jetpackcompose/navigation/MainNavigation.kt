@@ -1,6 +1,5 @@
 package com.jetpackcompose.navigation
 
-import android.icu.text.CaseMap.Title
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -36,6 +35,7 @@ import androidx.navigation.compose.rememberNavController
 import com.jetpackcompose.navigation.screens.AboutScreen
 import com.jetpackcompose.navigation.screens.ArticlesScreen
 import com.jetpackcompose.navigation.screens.SettingsScreen
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 enum class MainRoute(value: String) {
@@ -44,9 +44,17 @@ enum class MainRoute(value: String) {
     Settings("settings")
 }
 
+private data class DrawerMenu(val icon: ImageVector, val title: String, val route: String)
+
+private val menus = arrayOf(
+    DrawerMenu(Icons.Filled.Face, "Articles", MainRoute.Articles.name),
+    DrawerMenu(Icons.Filled.Settings, "Settings", MainRoute.Settings.name),
+    DrawerMenu(Icons.Filled.Info, "About Us", MainRoute.About.name)
+)
+
 @Composable
 private fun DrawerContent(
-    menus: Array<DrawerMenuItem>,
+    menus: Array<DrawerMenu>,
     onMenuClick: (String) -> Unit
 ) {
     Column(
@@ -76,24 +84,15 @@ private fun DrawerContent(
                 }
             )
         }
-
     }
 }
-
-private data class DrawerMenuItem(val icon: ImageVector, val title: String, val route: String)
-
-private val menus = arrayOf(
-    DrawerMenuItem(Icons.Filled.Face, "Articles", MainRoute.Articles.name),
-    DrawerMenuItem(Icons.Filled.Settings, "Settings", MainRoute.Settings.name),
-    DrawerMenuItem(Icons.Filled.Info, "About Us", MainRoute.About.name)
-)
 
 @Composable
 fun MainNavigation(
     navController: NavHostController = rememberNavController(),
+    coroutineScope: CoroutineScope = rememberCoroutineScope(),
     drawerState: DrawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
 ) {
-    val coroutineScope = rememberCoroutineScope()
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
